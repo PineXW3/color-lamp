@@ -1,0 +1,6 @@
+LAMPAPI/config.php
+.env
+.DS_Store
+Thumbs.db
+.vscode/
+*.log
