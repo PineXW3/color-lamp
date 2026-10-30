@@ -1,0 +1,51 @@
+@startuml usecase
+title COLORS Web Application - Use Case Diagram
+
+skinparam shadowing false
+skinparam packageStyle rectangle
+skinparam nodesep 60
+skinparam ranksep 90
+skinparam usecase {
+  BackgroundColor #F5F9FF
+  BorderColor #2F5D9E
+}
+
+actor "Registered User" as User
+
+rectangle "COLORS Web Application" {
+  usecase "Log In" as UC_Login
+  usecase "Show Invalid\nLogin Message" as UC_LoginErr
+
+  usecase "Add Color" as UC_Add
+  usecase "Search Colors" as UC_Search
+  usecase "Log Out" as UC_Logout
+
+  usecase "Validate Session" as UC_Session
+  usecase "Redirect to\nLogin Page" as UC_Redirect
+
+  note as N1
+    Precondition for Add Color, Search Colors
+    and Log Out: the user has logged in
+    (Log In sets the userId cookie).
+  end note
+}
+
+User -right- UC_Login
+User -right- UC_Add
+User -right- UC_Search
+User -right- UC_Logout
+
+UC_LoginErr .up.> UC_Login : <<extend>>\n[credentials incorrect]
+
+UC_Add    .right.> UC_Session : <<include>>
+UC_Search .right.> UC_Session : <<include>>
+UC_Logout .right.> UC_Session : <<include>>
+UC_Redirect .up.> UC_Session : <<extend>>\n[no valid cookie]
+
+UC_Session .. N1
+
+' layout hints only
+UC_Login -[hidden]down- UC_Add
+UC_Add -[hidden]down- UC_Search
+UC_Search -[hidden]down- UC_Logout
+@enduml
