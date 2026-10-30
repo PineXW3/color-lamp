@@ -1,0 +1,36 @@
+@startuml
+title COLORS Web Application - Class Diagram
+
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam roundCorner 8
+skinparam linetype ortho
+left to right direction
+
+class Users <<database table>> {
+  + ID : int
+  + FirstName : varchar
+  + LastName : varchar
+  + Login : varchar
+  + Password : varchar
+}
+
+class Colors <<database table>> {
+  + ID : int
+  + Name : varchar(50)
+  + UserID : int
+}
+
+Users "1" -- "0..*" Colors : owns >
+
+note bottom of Users
+  Primary key: ID
+end note
+
+note bottom of Colors
+  Primary key: ID
+  Foreign key: UserID -> Users.ID
+end note
+
+@enduml
