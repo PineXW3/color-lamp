@@ -1,0 +1,55 @@
+
+@startuml
+title COLORS Web Application - Activity Diagram
+
+skinparam shadowing false
+skinparam backgroundColor white
+
+start
+:Open login page (index.html);
+
+repeat
+  :Enter username and password;
+  :POST credentials to Login.php;
+  :Query Users table for matching credentials;
+  backward :Display incorrect username/password;
+repeat while (Valid credentials?) is (No) not (Yes)
+
+:Save user ID and name in browser cookie;
+:Navigate to Colors page (color.html);
+
+label chooseAction
+
+switch (User action?)
+  case (Add color)
+    :Enter color name;
+    :POST color and userId to AddColor.php;
+    :Insert (UserId, Name) into Colors table;
+    :Display "Color has been added";
+
+  case (Search colors)
+    :Enter search term;
+    :POST search and userId to SearchColors.php;
+    :Find matching colors belonging to userId;
+
+    if (Any matches?) then (Yes)
+      :Display matching color names;
+    else (No)
+      :API returns "No Records Found";
+      note right
+        The current frontend does not handle
+        the error response's missing
+        results array correctly.
+      end note
+    endif
+
+  case (Log out)
+    :Clear user cookie;
+    :Return to login page (index.html);
+    stop
+endswitch
+
+:Remain on Colors page;
+goto chooseAction
+
+@enduml
