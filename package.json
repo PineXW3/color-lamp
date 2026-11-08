@@ -1,0 +1,35 @@
+{
+  "name": "color-lamp",
+  "version": "1.0.0",
+  "description": "COLORS is a small full-stack web application built on the LAMP stack. A user logs in, adds color names to a personal list, and searches the colors they have saved. Each user sees only their own colors.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "lint": "npm run lint:html && npm run lint:css && npm run lint:js",
+    "lint:html": "htmlhint \"public/**/*.html\"",
+    "lint:css": "stylelint \"public/css/**/*.css\"",
+    "lint:js": "eslint \"public/js/**/*.js\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PineXW3/color-lamp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/PineXW3/color-lamp/issues"
+  },
+  "homepage": "https://github.com/PineXW3/color-lamp#readme",
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.14.0",
+    "globals": "^17.14.0",
+    "htmlhint": "^1.9.2",
+    "stylelint": "^17.16.0",
+    "stylelint-config-standard": "^40.0.0"
+  }
+}
