@@ -14,5 +14,13 @@ export default [
     rules: {
       ...js.configs.recommended.rules
     }
+  },
+  {
+    files: ["public/js/md5.js"],
+    languageOptions: {
+      globals: {
+        module: "readonly"
+      }
+    }
   }
 ];
